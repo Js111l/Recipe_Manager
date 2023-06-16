@@ -1,0 +1,28 @@
+#spring:
+#  profiles:
+#    active:
+#
+#  jpa:
+#    hibernate:
+#      ddl-auto: create-drop
+#
+#  mvc:
+#    problemdetails:
+#      enabled: true
+#  datasource:
+#    url: jdbc:mysql://localhost:33919/mysql
+#    username: root
+#    password: qwerty
+---
+ spring:
+  profiles:
+    active:
+      - test
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password

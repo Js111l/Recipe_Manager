@@ -4,7 +4,7 @@ spring:
       ddl-auto: create-drop
   datasource:
     url: ${DB_URL}
-    username: ${DB_USERNAME{
+    username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
 management:
   endpoints:

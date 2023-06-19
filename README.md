@@ -17,7 +17,7 @@ With the API you can load existing recipes and add your own. Also you can
 delete and update existing ones.
 
 #### Paths
-https://recipe-api-q3aa.onrender.com//swagger-ui-doc.html
+https://recipe-api-q3aa.onrender.com/swagger-ui-doc.html
 
 ## Technologies
 

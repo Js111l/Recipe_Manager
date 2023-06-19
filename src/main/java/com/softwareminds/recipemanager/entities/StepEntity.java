@@ -12,15 +12,17 @@ import lombok.Setter;
 @Getter
 @Table(name = "Step")
 @JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id",
-        scope = StepEntity.class)
+    generator = ObjectIdGenerators.PropertyGenerator.class,
+    property = "id",
+    scope = StepEntity.class)
 public class StepEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
   private Integer stepNumber;
+
+  @Column(columnDefinition = "TEXT")
   private String content;
 
   @ManyToOne

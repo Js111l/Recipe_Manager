@@ -16,4 +16,11 @@ public class ApiExceptionHandler {
     return pb;
   }
 
+  @ExceptionHandler
+  public ProblemDetail illegalArgExceptionHandler(IllegalArgumentException exception) {
+    var pb = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+    pb.setTitle("ILLEGAL_ARGUMENT");
+    pb.setDetail(exception.getMessage());
+    return pb;
+  }
 }

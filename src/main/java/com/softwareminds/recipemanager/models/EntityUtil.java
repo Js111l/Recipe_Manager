@@ -5,8 +5,6 @@ import com.softwareminds.recipemanager.entities.IngredientEntity;
 import com.softwareminds.recipemanager.entities.RecipeEntity;
 import com.softwareminds.recipemanager.entities.StepEntity;
 
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 import java.util.stream.Collectors;
 
 public class EntityUtil {
@@ -15,7 +13,7 @@ public class EntityUtil {
     var recipeEntity = new RecipeEntity();
     recipeEntity.setTitle(recipe.name());
     recipeEntity.setShortDescription(recipe.description());
-    recipeEntity.setPrepTime(Duration.of(1, ChronoUnit.HOURS));
+    recipeEntity.setPrepTime(recipe.prepTime());
     recipeEntity.setSteps(
         recipe.steps().stream()
             .map(x -> getStepEntity(recipeEntity, x))
@@ -26,28 +24,20 @@ public class EntityUtil {
   }
 
   public static Recipe getRecipeModel(RecipeEntity recipeEntity) {
-    var recipe =
-        new Recipe(
-            recipeEntity.getId(),
-            recipeEntity.getTitle(),
-            recipeEntity.getShortDescription(),
-            recipeEntity.getAmountEntities().stream()
-                .map(
-                    x -> {
-                      var ingredient =
-                          new Ingredient(
-                              x.getId(), x.getIngredient().getName(), x.getAmount(), x.getUnit());
-                      return ingredient;
-                    })
-                .collect(Collectors.toList()),
-            recipeEntity.getSteps().stream()
-                .map(
-                    x -> {
-                      var step = new Step(x.getId(), x.getStepNumber(), x.getContent());
-                      return step;
-                    })
-                .collect(Collectors.toList()));
-    return recipe;
+    return new Recipe(
+        recipeEntity.getId(),
+        recipeEntity.getTitle(),
+        recipeEntity.getPrepTime(),
+        recipeEntity.getShortDescription(),
+        recipeEntity.getAmountEntities().stream()
+            .map(
+                x ->
+                    new Ingredient(
+                        x.getId(), x.getIngredient().getName(), x.getAmount(), x.getUnit()))
+            .collect(Collectors.toList()),
+        recipeEntity.getSteps().stream()
+            .map(x -> new Step(x.getId(), x.getStepNumber(), x.getContent()))
+            .collect(Collectors.toList()));
   }
 
   private static StepEntity getStepEntity(RecipeEntity recipeEntity, Step step) {
@@ -59,23 +49,26 @@ public class EntityUtil {
   }
 
   private static void setRecipeEntityAssociations(RecipeEntity recipeEntity, Recipe recipe) {
+
     recipeEntity.setIngredients(
         recipe.ingredients().stream()
             .map(
-                x -> {
-                  var ingredient = getIngredientEntity(recipeEntity, x.name());
-                  recipeEntity.addAmountEntity(getAmountEntity(recipeEntity, x, ingredient));
-                  return ingredient;
+                ingredient -> {
+                  var ingredientEntity = getIngredientEntity(recipeEntity, ingredient.name());
+                  recipeEntity.addAmountEntity(
+                      getAmountEntity(recipeEntity, ingredientEntity, ingredient));
+                  return ingredientEntity;
                 })
             .collect(Collectors.toList()));
   }
 
   private static AmountEntity getAmountEntity(
-      RecipeEntity recipeEntity, Ingredient ingredient, IngredientEntity ingredientEntity) {
+      RecipeEntity recipeEntity, IngredientEntity ingredientEntity, Ingredient ingredient) {
     var amount = new AmountEntity();
     amount.setRecipe(recipeEntity);
     amount.setIngredient(ingredientEntity);
-    amount.setUnit(QuantityUnit.valueOf("GRAMS"));
+    amount.setUnit(ingredient.unit());
+    amount.setAmount(ingredient.amount());
     return amount;
   }
 
@@ -92,7 +85,7 @@ public class EntityUtil {
             .filter(x -> x.getIngredient().equals(ingredientEntity))
             .findFirst()
             .orElseThrow(
-                () -> new RuntimeException()
+                RuntimeException::new
                 // todo
                 );
     return new Ingredient(

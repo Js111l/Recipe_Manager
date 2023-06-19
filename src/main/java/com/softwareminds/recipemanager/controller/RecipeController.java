@@ -22,10 +22,26 @@ public class RecipeController {
     return this.recipeService.getAll();
   }
 
+  @GetMapping(params = {"page", "size", "direction"})
+  @CrossOrigin
+  public List<Recipe> getAllRecipesWithPagination(
+      @RequestParam(defaultValue = "0") int page,
+      @RequestParam(defaultValue = "3") int size,
+      @RequestParam(defaultValue = "ASC") String direction) {
+    return this.recipeService.getAll(page, size, direction);
+  }
+
+
   @GetMapping("/{id}")
   @CrossOrigin
   public Recipe getRecipeById(@PathVariable int id) {
     return this.recipeService.getRecipeById(id);
+  }
+
+  @GetMapping(params = "name")
+  @CrossOrigin
+  public List<Recipe> getRecipesFilterByName(@RequestParam String name) {
+    return this.recipeService.getRecipesFilterByName(name);
   }
 
   @GetMapping("/{id}/ingredients")

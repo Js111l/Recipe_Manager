@@ -1,14 +1,18 @@
 package com.softwareminds.recipemanager.service;
 
 import com.softwareminds.recipemanager.exceptions.IngredientNotFound;
+import com.softwareminds.recipemanager.models.EntityUtil;
 import com.softwareminds.recipemanager.models.Ingredient;
 import com.softwareminds.recipemanager.models.Recipe;
 import com.softwareminds.recipemanager.repository.IngredientRepository;
 import com.softwareminds.recipemanager.repository.RecipeRepository;
 import com.softwareminds.recipemanager.exceptions.RecipeNotFoundException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.softwareminds.recipemanager.models.EntityUtil.*;
 
@@ -28,7 +32,16 @@ public class RecipeService {
   }
 
   public List<Recipe> getAll() {
-    return this.repository.findAll().stream().map(x -> getRecipeModel(x)).toList();
+    return this.repository.findAll().stream()
+        .map(EntityUtil::getRecipeModel)
+        .collect(Collectors.toList());
+  }
+
+  public List<Recipe> getAll(int page, int size, String direction) {
+    var recipeEntityPage =
+        this.repository.findAll(
+            PageRequest.of(page, size, Sort.by(Sort.Direction.valueOf(direction), "id")));
+    return recipeEntityPage.getContent().stream().map(EntityUtil::getRecipeModel).toList();
   }
 
   public Recipe getRecipeById(int id) {
@@ -68,6 +81,10 @@ public class RecipeService {
   }
 
   public List<Ingredient> getRecipesIngredients(int id) {
+    this.repository
+        .findById(id)
+        .orElseThrow(() -> new RecipeNotFoundException("Recipe with given id has not been found!"));
+
     return this.repository.getRecipeIngredients(id).stream()
         .map(
             x ->
@@ -77,5 +94,11 @@ public class RecipeService {
                         .orElseThrow(
                             () -> new IngredientNotFound("No ingredient with given id found!"))))
         .toList();
+  }
+
+  public List<Recipe> getRecipesFilterByName(String name) {
+    return this.repository.getRecipesFilterByName(name).stream()
+        .map(EntityUtil::getRecipeModel)
+        .collect(Collectors.toList());
   }
 }

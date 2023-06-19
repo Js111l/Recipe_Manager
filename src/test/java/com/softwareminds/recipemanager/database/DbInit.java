@@ -1,52 +1,53 @@
-package com.softwareminds.recipemanager.config;
+package com.softwareminds.recipemanager.database;
 
 import com.softwareminds.recipemanager.models.Ingredient;
 import com.softwareminds.recipemanager.models.QuantityUnit;
 import com.softwareminds.recipemanager.models.Recipe;
 import com.softwareminds.recipemanager.models.Step;
-import com.softwareminds.recipemanager.repository.AmountRepository;
-import com.softwareminds.recipemanager.repository.IngredientRepository;
-import com.softwareminds.recipemanager.repository.StepRepository;
 import com.softwareminds.recipemanager.service.RecipeService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Component
-public class DbInit implements CommandLineRunner {
+public class DbInit {
   private final RecipeService recipeService;
-  private final IngredientRepository ingredientRepository;
 
-  private final AmountRepository amountRepository;
-
-  private final StepRepository stepRepository;
-
-  public DbInit(
-      RecipeService recipeService,
-      IngredientRepository ingredientRepository,
-      AmountRepository amountRepository,
-      StepRepository stepRepository) {
+  public DbInit(RecipeService recipeService) {
     this.recipeService = recipeService;
-    this.ingredientRepository = ingredientRepository;
-    this.amountRepository = amountRepository;
-    this.stepRepository = stepRepository;
   }
 
-  @Override
-  public void run(String... args) {
+  public List<Recipe> getRecipesList() {
 
-    var recipe =
-        new Recipe(
-            1,
-            "Recipe",
-            Duration.of(1, ChronoUnit.HOURS).toString(),
-            "Desc",
-            List.of(new Ingredient(1, "Ingr", 200, QuantityUnit.GRAMS)),
-            List.of(new Step(1, 1, "Content")));
+    var ingrCounter = new AtomicInteger(0);
+    var stepCounter = new AtomicInteger(0);
 
-    this.recipeService.saveRecipe(recipe);
+    return IntStream.rangeClosed(1, 6)
+        .mapToObj(
+            x ->
+                new Recipe(
+                    x,
+                    "Recipe" + x,
+                    Duration.of(x, ChronoUnit.HOURS).toString(),
+                    "Short description of a recipe",
+                    List.of(
+                        new Ingredient(ingrCounter.incrementAndGet(), "Milk", 200, QuantityUnit.ML),
+                        new Ingredient(ingrCounter.incrementAndGet(), "Egg", 3, QuantityUnit.PIECE),
+                        new Ingredient(
+                            ingrCounter.incrementAndGet(), "Cheese", 100, QuantityUnit.GRAMS)),
+                    List.of(
+                        new Step(stepCounter.incrementAndGet(), 1, "First step!"),
+                        new Step(stepCounter.incrementAndGet(), 2, "Second step!"),
+                        new Step(stepCounter.incrementAndGet(), 3, "Third step!"))))
+        .collect(Collectors.toList());
+  }
+
+  public void initTestData() {
+    getRecipesList().forEach(this.recipeService::saveRecipe);
   }
 }

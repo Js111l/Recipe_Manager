@@ -17,10 +17,7 @@ With the API you can load existing recipes and add your own. Also you can
 delete and update existing ones.
 
 #### Paths
-
-```
-
-```
+https://recipe-api-q3aa.onrender.com//swagger-ui-doc.html
 
 ## Technologies
 
@@ -43,6 +40,10 @@ delete and update existing ones.
 
 API is running on server so in order to access the api you can simply refer to the url:
 https://recipe-api-q3aa.onrender.com/recipes
+and apply your specified http method and params.
+
+In order to get information about total number of requests refer to the url:
+https://recipe-api-q3aa.onrender.com/actuator/metrics/http.server.requests
 
 
 

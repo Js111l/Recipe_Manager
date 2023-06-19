@@ -26,13 +26,11 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	implementation 'mysql:mysql-connector-java:8.0.31'
 	testImplementation 'org.testcontainers:postgresql:1.18.3'
 	testImplementation 'org.testcontainers:testcontainers:1.18.0'
 	testImplementation 'org.testcontainers:junit-jupiter:1.18.0'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux:3.1.0'
 	implementation 'org.postgresql:postgresql:42.6.0'
-
 
 }
 

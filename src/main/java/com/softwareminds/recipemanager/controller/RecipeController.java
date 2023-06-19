@@ -3,6 +3,7 @@ package com.softwareminds.recipemanager.controller;
 import com.softwareminds.recipemanager.models.Ingredient;
 import com.softwareminds.recipemanager.models.Recipe;
 import com.softwareminds.recipemanager.service.RecipeService;
+import io.micrometer.observation.Observation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,6 @@ public class RecipeController {
       @RequestParam(defaultValue = "ASC") String direction) {
     return this.recipeService.getAll(page, size, direction);
   }
-
 
   @GetMapping("/{id}")
   @CrossOrigin

@@ -3,14 +3,14 @@ spring:
     hibernate:
       ddl-auto: create-drop
   datasource:
-    url: jdbc:postgresql://dpg-ci88qpunqql0ld9db68g-a.oregon-postgres.render.com/postgres_db_p7qd
-    username: root
-    password: Qf7sfL4LWjkmvhfXLrLom9SgBRRjD7AU
+    url: ${DB_URL}
+    username: ${DB_USERNAME{
+    password: ${DB_PASSWORD}
 management:
   endpoints:
     web:
       exposure:
-        include: metrics, openapi, swagger
+        include: metrics
 springdoc:
   swagger-ui:
-    path: /swagger-ui-custom.html
+    path: /swagger-ui-doc.html

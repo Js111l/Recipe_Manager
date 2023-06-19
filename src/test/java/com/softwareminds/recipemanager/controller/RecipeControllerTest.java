@@ -11,7 +11,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
@@ -28,8 +28,8 @@ import static org.hamcrest.Matchers.equalTo;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class RecipeControllerTest {
   @Container
-  public static MySQLContainer mySQLContainer =
-      new MySQLContainer<>("mysql:latest")
+  public static PostgreSQLContainer postgreSQLContainer =
+      new PostgreSQLContainer<>("postgres:latest")
           .withDatabaseName("test")
           .withUsername("root")
           .withPassword("qwerty");
@@ -41,21 +41,21 @@ class RecipeControllerTest {
 
   @DynamicPropertySource
   static void registerProperties(DynamicPropertyRegistry registry) {
-    registry.add("spring.datasource.url", mySQLContainer::getJdbcUrl);
-    registry.add("spring.datasource.username", mySQLContainer::getUsername);
-    registry.add("spring.datasource.password", mySQLContainer::getPassword);
+    registry.add("spring.datasource.url", postgreSQLContainer::getJdbcUrl);
+    registry.add("spring.datasource.username", postgreSQLContainer::getUsername);
+    registry.add("spring.datasource.password", postgreSQLContainer::getPassword);
   }
 
   @BeforeEach
   void setUp() {
-    mySQLContainer.start();
+    postgreSQLContainer.start();
     dbInit.initTestData();
     this.RECIPE_LIST = dbInit.getRecipesList();
   }
 
   @AfterAll
   static void tearDown() {
-    mySQLContainer.stop();
+    postgreSQLContainer.stop();
   }
 
   @Test

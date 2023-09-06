@@ -1,0 +1,1092 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.recipemanager.controller.RecipeControllerTest" tests="18" skipped="0" failures="0" errors="0" timestamp="2023-09-06T07:49:14" hostname="LAPTOP" time="97.019">
+  <properties/>
+  <testcase name="getRecipesFilterByName_validNameUpperCase_properEntity()" classname="com.recipemanager.controller.RecipeControllerTest" time="16.61"/>
+  <testcase name="getRecipesFilterByName_inValidName_emptyList()" classname="com.recipemanager.controller.RecipeControllerTest" time="7.801"/>
+  <testcase name="getRecipeById_validId_properEntity()" classname="com.recipemanager.controller.RecipeControllerTest" time="15.624"/>
+  <testcase name="getAllRecipesWithPagination_firstPageSize0_badRequest()" classname="com.recipemanager.controller.RecipeControllerTest" time="12.299"/>
+  <testcase name="getRecipesIngredients_validId_properListOfIngredients()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.302"/>
+  <testcase name="getAllRecipes_void_properListOfEntities()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.153"/>
+  <testcase name="getAllRecipesWithPagination_firstPageSize6_properListWithProperSize()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.224"/>
+  <testcase name="deleteRecipe_validId_properlyDeletedResource()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.132"/>
+  <testcase name="getRecipesFilterByName_validName_properEntity()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.151"/>
+  <testcase name="getRecipesFilterByName_validNameLowerCase_properEntity()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.229"/>
+  <testcase name="putRecipe_recipeWithInvalidId_statusNotFound()" classname="com.recipemanager.controller.RecipeControllerTest" time="2.965"/>
+  <testcase name="getRecipesFilterByName_validNamePrefix_properEntities()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.011"/>
+  <testcase name="getAllRecipesWithPagination_firstPage_properListOfRecipes()" classname="com.recipemanager.controller.RecipeControllerTest" time="2.913"/>
+  <testcase name="putRecipe_properRecipeObject_properlyUpdatedResource()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.702"/>
+  <testcase name="getRecipeById_inValidId_statusNotFound()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.339"/>
+  <testcase name="postRecipe()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.164"/>
+  <testcase name="getRecipesIngredients_inValidId_statusNotFound()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.094"/>
+  <testcase name="deleteRecipe_inValidId_statusNotFound()" classname="com.recipemanager.controller.RecipeControllerTest" time="3.29"/>
+  <system-out><![CDATA[09:47:55.643 [Test worker] INFO org.testcontainers.utility.ImageNameSubstitutor -- Image name substitution will be performed by: DefaultImageNameSubstitutor (composite of 'ConfigurationFileImageNameSubstitutor' and 'PrefixingImageNameSubstitutor')
+09:47:55.928 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.recipemanager.controller.RecipeControllerTest]: RecipeControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+09:47:56.190 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.recipemanager.RecipeManagerApplication for test class com.recipemanager.controller.RecipeControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:47:57.885+02:00  INFO 22756 --- [    Test worker] o.t.d.DockerClientProviderStrategy       : Loaded org.testcontainers.dockerclient.NpipeSocketClientProviderStrategy from ~/.testcontainers.properties, will try it first
+2023-09-06T09:47:59.834+02:00  INFO 22756 --- [    Test worker] o.t.d.DockerClientProviderStrategy       : Found Docker environment with local Npipe socket (npipe:////./pipe/docker_engine)
+2023-09-06T09:47:59.837+02:00  INFO 22756 --- [    Test worker] org.testcontainers.DockerClientFactory   : Docker host IP address is localhost
+2023-09-06T09:47:59.982+02:00  INFO 22756 --- [    Test worker] org.testcontainers.DockerClientFactory   : Connected to docker: 
+  Server Version: 4.4.4
+  API Version: 1.41
+  Operating System: fedora
+  Total Memory: 3837 MB
+2023-09-06T09:48:00.862+02:00  INFO 22756 --- [    Test worker] tc.testcontainers/ryuk:0.4.0             : Creating container for image: testcontainers/ryuk:0.4.0
+2023-09-06T09:48:01.245+02:00  INFO 22756 --- [    Test worker] tc.testcontainers/ryuk:0.4.0             : Container testcontainers/ryuk:0.4.0 is starting: d2c7c7535b0c004ab4ea76ef723a0702561082dac3499f27535a13300811d9fc
+2023-09-06T09:48:03.143+02:00  INFO 22756 --- [    Test worker] tc.testcontainers/ryuk:0.4.0             : Container testcontainers/ryuk:0.4.0 started in PT3.1386997S
+2023-09-06T09:48:03.168+02:00  INFO 22756 --- [    Test worker] o.t.utility.RyukResourceReaper           : Ryuk started - will monitor and terminate Testcontainers containers on JVM exit
+2023-09-06T09:48:03.169+02:00  INFO 22756 --- [    Test worker] org.testcontainers.DockerClientFactory   : Checking the system...
+2023-09-06T09:48:03.169+02:00  INFO 22756 --- [    Test worker] org.testcontainers.DockerClientFactory   : ?? Docker server version should be at least 1.6.0
+2023-09-06T09:48:03.186+02:00  INFO 22756 --- [    Test worker] tc.postgres:latest                       : Creating container for image: postgres:latest
+2023-09-06T09:48:06.279+02:00  INFO 22756 --- [    Test worker] tc.postgres:latest                       : Container postgres:latest is starting: 638d6572e8fc938812507a70b9d077580d190e76a2a245a040e683ad13192a50
+2023-09-06T09:48:49.911+02:00  INFO 22756 --- [    Test worker] tc.postgres:latest                       : Container postgres:latest started in PT46.7407174S
+2023-09-06T09:48:49.912+02:00  INFO 22756 --- [    Test worker] tc.postgres:latest                       : Container is started (JDBC URL: jdbc:postgresql://localhost:46045/test?loggerLevel=OFF)
+2023-09-06T09:48:49.929+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:48:49.931+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:48:55.330+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:48:57.058+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1686 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:49:02.079+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:49:02.164+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:49:02.165+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:49:03.094+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:49:03.104+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 13132 ms
+2023-09-06T09:49:04.891+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:49:05.467+02:00  INFO 22756 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.2.Final
+2023-09-06T09:49:05.485+02:00  INFO 22756 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-09-06T09:49:06.073+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:49:06.578+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:49:06.624+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-09-06T09:49:07.163+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2adce412
+2023-09-06T09:49:07.168+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-09-06T09:49:07.351+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@4fc8163
+2023-09-06T09:49:07.966+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:49:10.109+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:49:10.198+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:10.198+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:49:10.200+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:10.200+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:49:10.204+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:10.204+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:49:10.205+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:10.206+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:49:10.209+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:10.209+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:49:10.214+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:10.214+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:49:10.225+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:10.225+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:49:10.239+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:10.240+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:49:10.300+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:49:10.305+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:49:11.061+02:00  INFO 22756 --- [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-09-06T09:49:11.882+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:49:13.552+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:49:13.787+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52374 (http) with context path ''
+2023-09-06T09:49:13.828+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 77.308 seconds (process running for 80.025)
+2023-09-06T09:49:26.457+02:00  INFO 22756 --- [o-auto-1-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:49:26.457+02:00  INFO 22756 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:49:26.461+02:00  INFO 22756 --- [o-auto-1-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-09-06T09:49:28.902+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:49:28.929+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:49:31.028+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:49:31.028+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:49:31.097+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-09-06T09:49:31.111+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:49:31.203+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:49:31.204+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:49:32.103+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:49:32.144+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:49:32.422+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:49:32.425+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:49:32.425+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:49:32.501+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:49:32.501+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1293 ms
+2023-09-06T09:49:32.713+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:49:32.730+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:49:32.731+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:49:32.733+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2023-09-06T09:49:32.764+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@45339f9
+2023-09-06T09:49:32.764+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2023-09-06T09:49:32.772+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@743e5472
+2023-09-06T09:49:32.807+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:49:33.047+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:49:33.048+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:33.049+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:49:33.050+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:33.051+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:49:33.054+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:33.054+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:49:33.057+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:33.057+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:49:33.058+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:33.059+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:49:33.060+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:33.060+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:49:33.062+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:33.063+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:49:33.073+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:33.073+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:49:33.228+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:49:33.228+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:49:33.637+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:49:34.320+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:49:34.415+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52389 (http) with context path ''
+2023-09-06T09:49:34.526+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 3.391 seconds (process running for 100.722)
+2023-09-06T09:49:35.124+02:00  INFO 22756 --- [o-auto-2-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:49:35.125+02:00  INFO 22756 --- [o-auto-2-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:49:35.130+02:00  INFO 22756 --- [o-auto-2-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2023-09-06T09:49:36.432+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:49:36.435+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:49:38.621+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:49:38.622+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:49:38.686+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2023-09-06T09:49:38.919+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:49:39.288+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:49:39.289+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:49:43.519+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:49:43.578+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:49:44.677+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:49:44.680+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:49:44.690+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:49:45.080+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:49:45.080+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5784 ms
+2023-09-06T09:49:45.735+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:49:45.905+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:49:45.921+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:49:45.935+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2023-09-06T09:49:46.822+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@3460165f
+2023-09-06T09:49:46.823+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2023-09-06T09:49:46.830+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@28c776f2
+2023-09-06T09:49:47.197+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:49:47.810+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:49:47.834+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:47.837+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:49:47.839+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:47.839+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:49:47.841+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:47.842+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:49:47.849+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:47.850+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:49:47.855+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:47.855+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:49:47.856+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:47.856+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:49:47.857+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:47.858+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:49:47.860+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:49:47.861+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:49:47.959+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:49:47.962+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:49:48.933+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:49:50.563+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:49:50.641+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52407 (http) with context path ''
+2023-09-06T09:49:50.657+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 11.722 seconds (process running for 116.853)
+2023-09-06T09:49:51.541+02:00  INFO 22756 --- [o-auto-3-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:49:51.542+02:00  INFO 22756 --- [o-auto-3-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:49:51.544+02:00  INFO 22756 --- [o-auto-3-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-09-06T09:49:52.239+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:49:52.241+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:49:54.454+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:49:54.455+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:49:54.488+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2023-09-06T09:49:54.546+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:49:54.899+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:49:54.901+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:49:58.922+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:49:59.337+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 411 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:00.106+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:00.108+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:00.109+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:00.781+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:00.782+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 5836 ms
+2023-09-06T09:50:01.763+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:01.887+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:01.888+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:01.905+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2023-09-06T09:50:02.160+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@1cce63a4
+2023-09-06T09:50:02.164+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2023-09-06T09:50:02.178+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@5026a5ba
+2023-09-06T09:50:02.353+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:02.932+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:02.950+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:02.951+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:02.958+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:02.960+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:02.967+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:02.967+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:02.972+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:02.972+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:02.978+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:02.979+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:02.984+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:02.984+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:02.986+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:02.988+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:02.993+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:02.995+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:03.150+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:03.152+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:03.985+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:04.260+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:04.296+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52421 (http) with context path ''
+2023-09-06T09:50:04.314+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 9.752 seconds (process running for 130.51)
+2023-09-06T09:50:04.596+02:00  INFO 22756 --- [o-auto-4-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:04.596+02:00  INFO 22756 --- [o-auto-4-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:04.598+02:00  INFO 22756 --- [o-auto-4-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-09-06T09:50:04.686+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:04.692+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:06.775+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:06.775+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:06.822+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2023-09-06T09:50:06.849+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:06.885+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:06.885+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:07.186+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:07.202+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:07.281+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:07.281+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:07.281+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:07.312+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:07.312+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 411 ms
+2023-09-06T09:50:07.390+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:07.422+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:07.422+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:07.422+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2023-09-06T09:50:07.437+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@2f5f543
+2023-09-06T09:50:07.437+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2023-09-06T09:50:07.437+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@6b55832a
+2023-09-06T09:50:07.485+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:07.547+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:07.563+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:07.586+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:07.586+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:07.673+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:07.799+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:07.815+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52438 (http) with context path ''
+2023-09-06T09:50:07.830+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.976 seconds (process running for 134.03)
+2023-09-06T09:50:07.955+02:00  INFO 22756 --- [o-auto-5-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:07.955+02:00  INFO 22756 --- [o-auto-5-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:07.962+02:00  INFO 22756 --- [o-auto-5-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2023-09-06T09:50:08.002+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:08.002+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:10.100+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:10.101+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:10.139+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2023-09-06T09:50:10.152+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:10.183+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:10.184+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:10.394+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:10.407+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:10.461+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:10.461+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:10.462+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:10.494+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:10.494+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 309 ms
+2023-09-06T09:50:10.557+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:10.565+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:10.566+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:10.566+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2023-09-06T09:50:10.581+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection org.postgresql.jdbc.PgConnection@1434251
+2023-09-06T09:50:10.581+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2023-09-06T09:50:10.583+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@696dea11
+2023-09-06T09:50:10.598+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:10.634+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:10.636+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:10.636+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:10.637+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:10.637+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:10.638+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:10.638+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:10.639+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:10.639+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:10.640+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:10.640+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:10.641+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:10.641+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:10.641+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:10.641+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:10.643+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:10.643+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:10.657+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:10.657+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:10.719+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:10.902+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:10.921+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52449 (http) with context path ''
+2023-09-06T09:50:10.927+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.77 seconds (process running for 137.123)
+2023-09-06T09:50:11.085+02:00  INFO 22756 --- [o-auto-6-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:11.086+02:00  INFO 22756 --- [o-auto-6-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:11.087+02:00  INFO 22756 --- [o-auto-6-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:11.216+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:11.217+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:13.288+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:13.289+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:13.297+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2023-09-06T09:50:13.307+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:13.328+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:13.328+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:13.604+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:13.617+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:13.700+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:13.700+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:13.701+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:13.731+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:13.731+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 401 ms
+2023-09-06T09:50:13.768+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:13.775+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:13.775+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:13.776+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2023-09-06T09:50:13.790+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection org.postgresql.jdbc.PgConnection@41f43401
+2023-09-06T09:50:13.790+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2023-09-06T09:50:13.793+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@3ccfac20
+2023-09-06T09:50:13.811+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:13.853+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:13.855+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:13.856+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:13.856+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:13.856+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:13.857+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:13.857+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:13.859+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:13.860+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:13.861+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:13.862+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:13.862+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:13.862+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:13.863+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:13.863+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:13.864+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:13.864+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:13.889+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:13.889+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:13.971+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:14.121+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:14.149+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52463 (http) with context path ''
+2023-09-06T09:50:14.156+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.845 seconds (process running for 140.352)
+2023-09-06T09:50:14.303+02:00  INFO 22756 --- [o-auto-7-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:14.304+02:00  INFO 22756 --- [o-auto-7-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:14.305+02:00  INFO 22756 --- [o-auto-7-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:14.390+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:14.391+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:16.478+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:16.479+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:16.512+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2023-09-06T09:50:16.530+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:16.591+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:16.592+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:16.865+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:16.881+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:16.942+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:16.943+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:16.943+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:16.970+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:16.970+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 376 ms
+2023-09-06T09:50:17.004+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:17.011+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:17.011+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:17.011+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2023-09-06T09:50:17.025+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Added connection org.postgresql.jdbc.PgConnection@3614d53
+2023-09-06T09:50:17.025+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2023-09-06T09:50:17.028+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@12c4b985
+2023-09-06T09:50:17.040+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:17.087+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:17.088+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:17.088+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:17.089+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:17.089+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:17.090+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:17.091+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:17.092+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:17.092+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:17.093+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:17.093+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:17.094+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:17.094+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:17.095+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:17.095+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:17.096+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:17.097+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:17.114+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:17.114+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:17.204+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:17.325+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:17.356+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52475 (http) with context path ''
+2023-09-06T09:50:17.369+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.829 seconds (process running for 143.565)
+2023-09-06T09:50:17.500+02:00  INFO 22756 --- [o-auto-8-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:17.500+02:00  INFO 22756 --- [o-auto-8-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:17.501+02:00  INFO 22756 --- [o-auto-8-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:17.561+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:17.562+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:19.638+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:19.638+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:19.655+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2023-09-06T09:50:19.664+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:19.699+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:19.699+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:19.957+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:19.968+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 11 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:20.033+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:20.033+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:20.034+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:20.074+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:20.074+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 372 ms
+2023-09-06T09:50:20.131+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:20.141+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:20.141+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:20.142+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2023-09-06T09:50:20.157+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Added connection org.postgresql.jdbc.PgConnection@20c1fede
+2023-09-06T09:50:20.158+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2023-09-06T09:50:20.161+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@1e0c6282
+2023-09-06T09:50:20.179+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:20.208+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:20.210+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:20.210+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:20.210+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:20.211+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:20.211+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:20.211+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:20.212+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:20.212+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:20.212+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:20.212+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:20.213+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:20.213+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:20.214+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:20.214+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:20.214+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:20.214+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:20.231+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:20.232+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:20.298+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:20.463+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:20.498+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52488 (http) with context path ''
+2023-09-06T09:50:20.505+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.837 seconds (process running for 146.702)
+2023-09-06T09:50:20.661+02:00  INFO 22756 --- [o-auto-9-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:20.661+02:00  INFO 22756 --- [o-auto-9-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:20.662+02:00  INFO 22756 --- [o-auto-9-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:20.690+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:20.691+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:22.764+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:22.765+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:22.797+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2023-09-06T09:50:22.814+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:22.881+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:22.882+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:23.273+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:23.283+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 10 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:23.323+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:23.323+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:23.323+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:23.357+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:23.357+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 469 ms
+2023-09-06T09:50:23.407+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:23.416+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:23.416+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:23.417+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
+2023-09-06T09:50:23.432+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-10 - Added connection org.postgresql.jdbc.PgConnection@44f9e70f
+2023-09-06T09:50:23.433+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
+2023-09-06T09:50:23.436+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@1e22c706
+2023-09-06T09:50:23.466+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:23.499+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:23.500+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:23.500+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:23.501+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:23.501+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:23.502+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:23.502+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:23.503+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:23.503+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:23.504+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:23.504+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:23.505+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:23.505+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:23.506+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:23.506+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:23.507+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:23.507+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:23.527+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:23.528+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:23.650+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:23.766+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:23.799+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52501 (http) with context path ''
+2023-09-06T09:50:23.804+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.983 seconds (process running for 150.0)
+2023-09-06T09:50:23.900+02:00  INFO 22756 --- [-auto-10-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:23.900+02:00  INFO 22756 --- [-auto-10-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:23.901+02:00  INFO 22756 --- [-auto-10-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:23.925+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:23.926+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:25.995+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:25.996+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:26.027+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
+2023-09-06T09:50:26.044+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:26.138+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:26.139+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:26.327+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:26.335+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:26.375+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:26.375+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:26.375+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:26.400+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:26.400+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 256 ms
+2023-09-06T09:50:26.433+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:26.443+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:26.443+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:26.444+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Starting...
+2023-09-06T09:50:26.459+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-11 - Added connection org.postgresql.jdbc.PgConnection@3be2feb
+2023-09-06T09:50:26.459+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Start completed.
+2023-09-06T09:50:26.463+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@3b31d4cf
+2023-09-06T09:50:26.480+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:26.523+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:26.525+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:26.525+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:26.526+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:26.526+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:26.527+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:26.527+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:26.528+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:26.528+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:26.529+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:26.529+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:26.530+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:26.530+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:26.531+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:26.531+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:26.532+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:26.532+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:26.546+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:26.546+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:26.596+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:26.680+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:26.691+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52511 (http) with context path ''
+2023-09-06T09:50:26.696+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.644 seconds (process running for 152.892)
+2023-09-06T09:50:26.838+02:00  INFO 22756 --- [-auto-11-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:26.839+02:00  INFO 22756 --- [-auto-11-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:26.840+02:00  INFO 22756 --- [-auto-11-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:26.879+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:26.879+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:28.958+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:28.959+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:28.993+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown initiated...
+2023-09-06T09:50:29.011+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:29.065+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:29.065+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:29.306+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:29.319+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:29.384+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:29.384+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:29.385+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:29.413+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:29.414+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 347 ms
+2023-09-06T09:50:29.447+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:29.454+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:29.455+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:29.455+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Starting...
+2023-09-06T09:50:29.468+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-12 - Added connection org.postgresql.jdbc.PgConnection@2c8d1ea
+2023-09-06T09:50:29.468+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Start completed.
+2023-09-06T09:50:29.471+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@6ea9efde
+2023-09-06T09:50:29.482+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:29.516+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:29.517+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:29.518+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:29.518+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:29.518+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:29.519+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:29.519+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:29.520+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:29.520+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:29.521+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:29.521+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:29.522+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:29.522+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:29.522+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:29.523+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:29.523+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:29.523+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:29.539+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:29.539+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:29.594+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:29.724+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:29.751+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52527 (http) with context path ''
+2023-09-06T09:50:29.755+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.737 seconds (process running for 155.952)
+2023-09-06T09:50:29.854+02:00  INFO 22756 --- [-auto-12-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:29.854+02:00  INFO 22756 --- [-auto-12-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:29.856+02:00  INFO 22756 --- [-auto-12-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-09-06T09:50:29.912+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:29.912+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:31.979+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:31.979+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:32.009+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown initiated...
+2023-09-06T09:50:32.024+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:32.088+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:32.089+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:32.291+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:32.299+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:32.333+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:32.333+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:32.334+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:32.365+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:32.365+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 270 ms
+2023-09-06T09:50:32.406+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:32.415+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:32.416+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:32.418+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Starting...
+2023-09-06T09:50:32.433+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-13 - Added connection org.postgresql.jdbc.PgConnection@5e0eafd0
+2023-09-06T09:50:32.433+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Start completed.
+2023-09-06T09:50:32.436+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@79544bc2
+2023-09-06T09:50:32.447+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:32.475+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:32.476+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:32.476+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:32.476+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:32.476+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:32.477+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:32.477+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:32.478+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:32.478+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:32.479+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:32.479+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:32.480+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:32.480+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:32.480+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:32.481+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:32.482+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:32.482+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:32.498+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:32.498+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:32.540+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:32.628+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:32.642+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52538 (http) with context path ''
+2023-09-06T09:50:32.648+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.617 seconds (process running for 158.845)
+2023-09-06T09:50:32.795+02:00  INFO 22756 --- [-auto-13-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:32.795+02:00  INFO 22756 --- [-auto-13-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:32.796+02:00  INFO 22756 --- [-auto-13-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:32.834+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:32.835+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:34.924+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:34.924+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:34.933+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown initiated...
+2023-09-06T09:50:34.940+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:34.961+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:34.962+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:35.160+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:35.174+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:35.228+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:35.229+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:35.230+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:35.298+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:35.300+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 336 ms
+2023-09-06T09:50:35.453+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:35.480+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:35.480+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:35.483+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Starting...
+2023-09-06T09:50:35.503+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-14 - Added connection org.postgresql.jdbc.PgConnection@73017377
+2023-09-06T09:50:35.503+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Start completed.
+2023-09-06T09:50:35.507+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@3ade0d3f
+2023-09-06T09:50:35.532+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:35.596+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:35.599+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:35.599+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:35.600+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:35.600+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:35.602+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:35.602+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:35.604+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:35.604+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:35.605+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:35.605+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:35.607+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:35.607+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:35.608+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:35.608+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:35.619+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:35.619+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:35.641+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:35.641+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:35.717+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:36.079+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:36.133+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52556 (http) with context path ''
+2023-09-06T09:50:36.140+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 1.197 seconds (process running for 162.337)
+2023-09-06T09:50:36.313+02:00  INFO 22756 --- [-auto-14-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:36.313+02:00  INFO 22756 --- [-auto-14-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:36.317+02:00  INFO 22756 --- [-auto-14-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-09-06T09:50:36.536+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:36.536+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:38.618+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:38.619+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:38.632+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Shutdown initiated...
+2023-09-06T09:50:38.641+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:38.667+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:38.667+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:38.989+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:39.006+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:39.065+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:39.066+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:39.066+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:39.119+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:39.119+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 450 ms
+2023-09-06T09:50:39.210+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:39.222+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:39.222+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:39.224+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Starting...
+2023-09-06T09:50:39.243+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-15 - Added connection org.postgresql.jdbc.PgConnection@3d09fe9
+2023-09-06T09:50:39.243+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Start completed.
+2023-09-06T09:50:39.247+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@76975a22
+2023-09-06T09:50:39.270+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:39.337+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:39.338+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:39.338+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:39.339+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:39.339+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:39.340+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:39.340+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:39.341+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:39.341+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:39.341+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:39.342+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:39.342+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:39.342+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:39.343+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:39.343+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:39.344+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:39.344+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:39.365+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:39.365+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:39.467+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:39.677+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:39.699+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52570 (http) with context path ''
+2023-09-06T09:50:39.705+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 1.061 seconds (process running for 165.902)
+2023-09-06T09:50:39.829+02:00  INFO 22756 --- [-auto-15-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:39.829+02:00  INFO 22756 --- [-auto-15-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:39.830+02:00  INFO 22756 --- [-auto-15-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:39.858+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:39.859+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:41.938+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:41.938+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:41.964+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown initiated...
+2023-09-06T09:50:41.980+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:42.056+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:42.056+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:42.333+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:42.348+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:42.413+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:42.414+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:42.414+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:42.450+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:42.450+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 392 ms
+2023-09-06T09:50:42.532+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:42.542+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:42.542+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:42.544+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Starting...
+2023-09-06T09:50:42.557+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-16 - Added connection org.postgresql.jdbc.PgConnection@6cedeb4d
+2023-09-06T09:50:42.557+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Start completed.
+2023-09-06T09:50:42.559+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@4755c1ec
+2023-09-06T09:50:42.574+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:42.609+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:42.611+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:42.611+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:42.612+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:42.612+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:42.612+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:42.612+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:42.613+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:42.613+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:42.614+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:42.614+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:42.614+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:42.614+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:42.615+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:42.615+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:42.615+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:42.615+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:42.629+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:42.629+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:42.727+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:42.874+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:42.901+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52581 (http) with context path ''
+2023-09-06T09:50:42.907+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.913 seconds (process running for 169.104)
+2023-09-06T09:50:43.029+02:00  INFO 22756 --- [-auto-16-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:43.029+02:00  INFO 22756 --- [-auto-16-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:43.030+02:00  INFO 22756 --- [-auto-16-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:43.062+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:43.062+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:45.127+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:45.128+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:45.138+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Shutdown initiated...
+2023-09-06T09:50:45.145+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-16 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:45.168+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:45.168+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:45.412+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:45.427+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:45.503+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:45.505+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:45.505+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:45.548+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:45.548+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 379 ms
+2023-09-06T09:50:45.614+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:45.621+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:45.621+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:45.622+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Starting...
+2023-09-06T09:50:45.636+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-17 - Added connection org.postgresql.jdbc.PgConnection@68c62048
+2023-09-06T09:50:45.636+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Start completed.
+2023-09-06T09:50:45.640+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@3c2cc2a6
+2023-09-06T09:50:45.654+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:45.688+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:45.689+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:45.689+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:45.690+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:45.690+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:45.691+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:45.691+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:45.692+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:45.692+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:45.692+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:45.692+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:45.693+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:45.693+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:45.694+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:45.694+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:45.694+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:45.694+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:45.711+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:45.711+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:45.796+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:45.920+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:45.934+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52594 (http) with context path ''
+2023-09-06T09:50:45.940+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.791 seconds (process running for 172.136)
+2023-09-06T09:50:46.087+02:00  INFO 22756 --- [-auto-17-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:46.087+02:00  INFO 22756 --- [-auto-17-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:46.088+02:00  INFO 22756 --- [-auto-17-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:46.109+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:46.110+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:48.184+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:48.184+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:48.220+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Shutdown initiated...
+2023-09-06T09:50:48.238+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-17 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.0)
+
+2023-09-06T09:50:48.288+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Starting RecipeControllerTest using Java 17.0.6 with PID 22756 (started by kubas in C:\Users\kubas\Desktop\FIXXXX\Recipe_Manager_Recipe)
+2023-09-06T09:50:48.288+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : No active profile set, falling back to 1 default profile: "default"
+2023-09-06T09:50:48.560+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-06T09:50:48.569+02:00  INFO 22756 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 4 JPA repository interfaces.
+2023-09-06T09:50:48.610+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2023-09-06T09:50:48.611+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-06T09:50:48.611+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.8]
+2023-09-06T09:50:48.647+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-06T09:50:48.648+02:00  INFO 22756 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 357 ms
+2023-09-06T09:50:48.697+02:00  INFO 22756 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-06T09:50:48.707+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:48.707+02:00  INFO 22756 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-06T09:50:48.709+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-18 - Starting...
+2023-09-06T09:50:48.726+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-18 - Added connection org.postgresql.jdbc.PgConnection@7a0dcc05
+2023-09-06T09:50:48.726+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-18 - Start completed.
+2023-09-06T09:50:48.731+02:00  INFO 22756 --- [    Test worker] org.hibernate.orm.dialect                : HHH035001: Using dialect: org.hibernate.dialect.PostgreSQLDialect, version: org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$DialectResolutionInfoImpl@490f1f20
+2023-09-06T09:50:48.752+02:00  INFO 22756 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-06T09:50:48.795+02:00  INFO 22756 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-06T09:50:48.799+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:48.799+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:48.800+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:48.801+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "amount" does not exist, skipping
+2023-09-06T09:50:48.802+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:48.802+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "ingredient" does not exist, skipping
+2023-09-06T09:50:48.803+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:48.803+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : relation "step" does not exist, skipping
+2023-09-06T09:50:48.804+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:48.804+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "amount" does not exist, skipping
+2023-09-06T09:50:48.805+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:48.805+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "ingredient" does not exist, skipping
+2023-09-06T09:50:48.807+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:48.807+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "recipe" does not exist, skipping
+2023-09-06T09:50:48.808+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Warning Code: 0, SQLState: 00000
+2023-09-06T09:50:48.808+02:00  WARN 22756 --- [    Test worker] o.h.engine.jdbc.spi.SqlExceptionHelper   : table "step" does not exist, skipping
+2023-09-06T09:50:48.848+02:00  INFO 22756 --- [    Test worker] o.h.t.s.i.e.GenerationTargetToDatabase   : HHH000476: Executing script '[injected ScriptSourceInputNonExistentImpl script]'
+2023-09-06T09:50:48.849+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:48.976+02:00  WARN 22756 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-06T09:50:49.115+02:00  INFO 22756 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2023-09-06T09:50:49.136+02:00  INFO 22756 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 52610 (http) with context path ''
+2023-09-06T09:50:49.144+02:00  INFO 22756 --- [    Test worker] c.r.controller.RecipeControllerTest      : Started RecipeControllerTest in 0.898 seconds (process running for 175.341)
+2023-09-06T09:50:49.264+02:00  INFO 22756 --- [-auto-18-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-06T09:50:49.264+02:00  INFO 22756 --- [-auto-18-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-06T09:50:49.265+02:00  INFO 22756 --- [-auto-18-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2023-09-06T09:50:49.293+02:00  INFO 22756 --- [    Test worker] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-09-06T09:50:49.294+02:00  INFO 22756 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-09-06T09:50:51.418+02:00  INFO 22756 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-09-06T09:50:51.419+02:00  INFO 22756 --- [    Test worker] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-09-06T09:50:51.514+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-18 - Shutdown initiated...
+2023-09-06T09:50:51.530+02:00  INFO 22756 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-18 - Shutdown completed.
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

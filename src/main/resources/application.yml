@@ -2,15 +2,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-management:
-  endpoints:
-    web:
-      exposure:
-        include: metrics
+    url: jdbc:postgresql://localhost:5432/recipe_db
+    username: admin
+    password: qwerty
 springdoc:
   swagger-ui:
     path: /swagger-ui-doc.html

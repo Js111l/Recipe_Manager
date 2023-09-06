@@ -1,0 +1,11 @@
+services:
+  database:
+    container_name: recipe_db
+    image:
+      postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: recipe_db
+    ports:
+      - 5432:5432

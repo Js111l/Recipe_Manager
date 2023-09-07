@@ -17,7 +17,12 @@ With the API you can load existing recipes and add your own. Also you can
 delete and update existing ones.
 
 #### Paths
-https://recipe-api-q3aa.onrender.com/swagger-ui-doc.html
+
+Copy and paste ```openapi.yml``` file from ```java/resources``` to https://editor-next.swagger.io/
+in order to view the swagger documentation for this api.
+Alternatively, after you successfully launched the project, you can access the path
+/swagger-ui-doc.html (
+e.g. http://localhost:8080/swagger-ui-doc.html) and see full swagger documentation.
 
 ## Technologies
 
@@ -38,12 +43,10 @@ https://recipe-api-q3aa.onrender.com/swagger-ui-doc.html
 
 ## Setup
 
-API is running on server so in order to access the api you can simply refer to the url:
-https://recipe-api-q3aa.onrender.com/recipes
-and apply your specified http method and params.
-
-In order to get information about total number of requests refer to the url:
-https://recipe-api-q3aa.onrender.com/actuator/metrics/http.server.requests
+In order to set up the project, you would need to have established connection to the database.
+Firstly, make sure you have Docker installed on your machine. Then
+issue the ```docker-compose -f docker_compose.yml up``` command in this directory to set up proper
+environment.
 
 
 
